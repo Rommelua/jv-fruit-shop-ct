@@ -72,7 +72,7 @@ public class FruitTransaction {
             if (matcher.matches()) {
                 FruitTransaction fruitTransaction = new FruitTransaction(inputStr);
                 transactionList.add(fruitTransaction);
-            }else {
+            } else {
                 System.out.println("Incorrect data input. Check the formatting");
             }
         }

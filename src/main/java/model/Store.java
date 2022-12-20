@@ -79,10 +79,11 @@ public class Store {
             productList.get(index).setAmount(quantityOfFruit);
         }
     }
-    private int getProductIndex(String prodName){
+
+    private int getProductIndex(String prodName) {
         int index = 0;
-        for (int i = 0; i < productList.size() ; i++) {
-            if(prodName.equals(productList.get(i).getName())) {
+        for (int i = 0; i < productList.size(); i++) {
+            if (prodName.equals(productList.get(i).getName())) {
                 index = i;
                 break;
             }
