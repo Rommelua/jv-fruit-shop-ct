@@ -22,10 +22,9 @@ import java.util.Set;
 public class Store {
     private List<Fruit> productList;
     private OperationStrategy strategy;
-    private String csvFilePath = "C:\\Users\\Serhii Zaitsev\\IdeaProjects\\jv-fruit-shop-ct"
-            + "\\src\\main\\java\\res\\fruitTransactions.txt";
-    private String csvFilePathOut = "C:\\Users\\Serhii Zaitsev\\IdeaProjects\\jv-fruit-shop-ct"
-            + "\\src\\main\\java\\res\\fruitTransactions_out.txt";
+    //update path to file. create a file for output
+    private String csvFilePath = "src/main/java/res/fruitTransactions.txt";
+    private String csvFilePathOut = "src/main/java/res/fruitTransactions_1.txt";
 
     public void startWorkingDay() {
         //get data from CSV file
@@ -45,7 +44,7 @@ public class Store {
         this.strategy = strategy;
     }
 
-    private Fruit executeStrategy(FruitTransaction transaction, Fruit fruit) {
+    private int executeStrategy(FruitTransaction transaction, Fruit fruit) {
         return strategy.executeOperation(transaction,fruit);
     }
 
@@ -63,22 +62,31 @@ public class Store {
 
     private void runTransactionList(List<FruitTransaction> transactionList) {
         for (int i = 0; i < transactionList.size(); i++) {
-            if ("b".equals(transactionList.get(i).getOperation().getOperation())) {
+            if (transactionList.get(i).getOperation() == FruitTransaction.Operation.BALANCE) {
                 setStrategy(new Balance());
             }
-            if ("p".equals(transactionList.get(i).getOperation().getOperation())) {
+            if (transactionList.get(i).getOperation() == FruitTransaction.Operation.PURCHASE) {
                 setStrategy(new Purchase());
             }
-            if ("r".equals(transactionList.get(i).getOperation().getOperation())) {
+            if (transactionList.get(i).getOperation() == FruitTransaction.Operation.RETURN) {
                 setStrategy(new Return());
             }
-            if ("s".equals(transactionList.get(i).getOperation().getOperation())) {
+            if (transactionList.get(i).getOperation() == FruitTransaction.Operation.SUPPLY) {
                 setStrategy(new Supply());
             }
-            int index = productList.indexOf(transactionList.get(i).getFruit());
-            Fruit fruitToInsert = executeStrategy(transactionList.get(i),productList.get(
-                    productList.indexOf(transactionList.get(i).getFruit())));
-            productList.set(index,fruitToInsert);
+            int index = getProductIndex(transactionList.get(i).getFruit());
+            int quantityOfFruit = executeStrategy(transactionList.get(i),productList.get(index));
+            productList.get(index).setAmount(quantityOfFruit);
         }
+    }
+    private int getProductIndex(String prodName){
+        int index = 0;
+        for (int i = 0; i < productList.size() ; i++) {
+            if(prodName.equals(productList.get(i).getName())) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }

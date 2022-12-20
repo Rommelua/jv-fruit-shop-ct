@@ -11,14 +11,13 @@ public class FruitTransaction {
     private int quantity;
 
     public FruitTransaction(){
-
     }
 
     public FruitTransaction(String inputLine) {
         String[] inputData = inputLine.split(",");
-        this.operation = Operation.valueOf(inputData[0]);
+        this.operation = selectOperation(inputData[0]);
         this.fruit = inputData[1];
-        this.quantity = Integer.getInteger(inputData[2]);
+        this.quantity = Integer.parseInt(inputData[2]);
     }
 
     public Operation getOperation() {
@@ -51,15 +50,16 @@ public class FruitTransaction {
         PURCHASE("p"),
         RETURN("r");
 
-        private String operation;
+        private String code;
 
-        Operation(String operation) {
-            this.operation = operation;
+        Operation(String code) {
+            this.code = code;
         }
 
-        public String getOperation() {
-            return operation;
+        public String getCode() {
+            return code;
         }
+
     }
 
     public List<FruitTransaction> fruitTransactionList(List<String> inputStringData) {
@@ -72,10 +72,25 @@ public class FruitTransaction {
             if (matcher.matches()) {
                 FruitTransaction fruitTransaction = new FruitTransaction(inputStr);
                 transactionList.add(fruitTransaction);
+            }else {
+                System.out.println("Incorrect data input. Check the formatting");
             }
-            System.out.println("Incorrect data input. Check the formatting");
         }
         return transactionList;
+    }
+
+    public Operation selectOperation(String inputCode) {
+        String filter = inputCode;
+        switch (filter) {
+            case "b": return Operation.BALANCE;
+            case "s": return Operation.SUPPLY;
+            case "r": return Operation.RETURN;
+            case "p": return Operation.PURCHASE;
+            default:
+                System.out.println("Wrong Operation Unit. Check the file input");
+                return null;
+        }
+
     }
 }
 

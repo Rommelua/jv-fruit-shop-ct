@@ -5,8 +5,8 @@ import model.FruitTransaction;
 
 public class Balance implements OperationStrategy {
     @Override
-    public Fruit executeOperation(FruitTransaction transaction, Fruit fruitAmount) {
-        Fruit fruitToInsert = new Fruit(transaction.getFruit(), transaction.getQuantity());
-        return fruitToInsert;
+    public int executeOperation(FruitTransaction transaction, Fruit fruitAmount) {
+        int balance = transaction.getQuantity();
+        return balance;
     }
 }
