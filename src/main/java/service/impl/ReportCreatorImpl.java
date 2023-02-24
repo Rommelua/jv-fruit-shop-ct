@@ -1,7 +1,6 @@
 package service.impl;
 
 import db.Storage;
-import model.Fruit;
 import service.ReportCreator;
 
 public class ReportCreatorImpl implements ReportCreator {
@@ -10,9 +9,8 @@ public class ReportCreatorImpl implements ReportCreator {
     @Override
     public String createReport(Storage storage) {
         String report = HEADER + System.lineSeparator();
-        for (Fruit fruit : storage.getFruitsInStorage().keySet()) {
-            report = report.concat(fruit.getName() + ","
-                    + storage.getFruitAmount(fruit)) + System.lineSeparator();
+        for (String string : storage.getAllFruits()) {
+            report = report.concat(string);
         }
         return report;
     }

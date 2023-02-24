@@ -1,5 +1,6 @@
 package model;
 
+import db.Storage;
 import java.io.IOException;
 import java.util.List;
 import service.FileService;
@@ -26,13 +27,13 @@ public class Main {
         List<FruitTransaction> transactionList = parser.parseTransaction(inputTransactionString);
         //fill the storage with Fruits
         StorageService storageService = new StorageServiceImpl();
-        Store store = new Store();
-        store.setStorage(storageService.createStorage(transactionList));
+        Storage storage = new Storage();
+        // StorageDAO<Storage> storageDAO = new StorageDAOImpl(storage);
         //execute transactions
-        TransactionExecutor transactionExecutor = new TransactionExecutorImpl(store.getStorage());
-        store.setStorage(transactionExecutor.execute(transactionList));
+        TransactionExecutor transactionExecutor = new TransactionExecutorImpl(storage);
+        storage = transactionExecutor.execute(transactionList);
         ReportCreator reporter = new ReportCreatorImpl();
-        String report = reporter.createReport(store.getStorage());
+        String report = reporter.createReport(storage);
         fileService.writeToFile(outputCsvFilePath,report);
     }
 }

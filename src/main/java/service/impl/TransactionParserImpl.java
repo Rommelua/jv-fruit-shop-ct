@@ -7,9 +7,11 @@ import model.FruitTransaction;
 import service.TransactionParser;
 
 public class TransactionParserImpl implements TransactionParser {
+    private List<FruitTransaction> fruitTransactionList;
+
     @Override
     public List<FruitTransaction> parseTransaction(String input) {
-        List<FruitTransaction> transactionList = new ArrayList<>();
+        fruitTransactionList = new ArrayList<>();
         String[] inputData = input.split(System.lineSeparator());
         for (int i = 1; i < inputData.length; i++) {
             String[] transactionDetails = inputData[i].split(",");
@@ -17,8 +19,8 @@ public class TransactionParserImpl implements TransactionParser {
                      FruitTransaction.Operation.fromCode(transactionDetails[0]),
                     new Fruit(transactionDetails[1]),
                     Integer.parseInt(transactionDetails[2]));
-            transactionList.add(fruitTransaction);
+            fruitTransactionList.add(fruitTransaction);
         }
-        return transactionList;
+        return fruitTransactionList;
     }
 }
