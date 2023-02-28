@@ -4,14 +4,13 @@ import core.db.StorageDao;
 import java.util.Map;
 
 public class ReportService {
-    public String makeAReport(StorageDao storage) {
+    public String makeReport(StorageDao storage) {
         String report = "";
-        for (Map.Entry<String, Integer> data : storage.getMapOfFruits().entrySet()) {
+        for (Map.Entry<String, Integer> data : storage.getAllFruits().entrySet()) {
             String fruit = data.getKey();
             String quantity = Integer.toString(data.getValue());
             report = report + fruit + "," + quantity + "\n";
         }
-
         return "fruit,quantity" + "\n" + report;
     }
 }

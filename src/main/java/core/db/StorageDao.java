@@ -1,15 +1,32 @@
 package core.db;
 
-public class StorageDao extends Storage {
-    public void putToStorageFruitAndQuantity(String fruit, int quantity) {
-        getMapOfFruits().put(fruit,quantity);
+import java.util.Map;
+
+public class StorageDao {
+    private Storage storage = new Storage();
+
+    public StorageDao() {
     }
 
-    public void addToStorageFruitAndQuantity(String fruit, int quantity) {
-        getMapOfFruits().put(fruit, getMapOfFruits().get(fruit) + quantity);
+    public StorageDao(Storage storage) {
+        this.storage = storage;
     }
 
-    public void removeFromStorFruAndQuan(String fruit, int quantity) {
-        getMapOfFruits().put(fruit, getMapOfFruits().get(fruit) - quantity);
+    public void set(String fruit, int quantity) {
+        storage.getMapOfFruits().put(fruit, quantity);
+    }
+
+    public int get(String fruit) {
+        return storage.getMapOfFruits().get(fruit);
+    }
+
+    public void getAll(Map<String, Integer> fruit) {
+        for (String fruits : fruit.keySet()) {
+            storage.getMapOfFruits().get(fruits);
+        }
+    }
+
+    public Map<String, Integer> getAllFruits() {
+        return storage.getMapOfFruits();
     }
 }

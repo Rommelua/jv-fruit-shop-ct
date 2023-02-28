@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionParser {
+    private static final int OPERATION = 0;
+    private static final int FRUIT = 1;
+    private static final int AMOUNT = 2;
 
-    public List<FruitTransaction> parser(List<String> data) {
+    public List<FruitTransaction> parse(List<String> data) {
         List<FruitTransaction> transactionsList = new ArrayList<>();
-        String[] splittedLine = null;
-        FruitTransaction fruitTransaction;
         for (int i = 1; i < data.size(); i++) {
-            splittedLine = data.get(i).split(","); // тут в splittedLine буде: b banana 20
-            fruitTransaction = new FruitTransaction(
-                    FruitTransaction.Operation.stringToOperation(splittedLine[0]),
-                    splittedLine[1],
-                    Integer.parseInt(splittedLine[2])
+            String[] dividedLine = data.get(i).split(",");
+            FruitTransaction fruitTransaction = new FruitTransaction(
+                    FruitTransaction.Operation.getByCode(dividedLine[OPERATION]),
+                    dividedLine[FRUIT],
+                    Integer.parseInt(dividedLine[AMOUNT])
             );
             transactionsList.add(fruitTransaction);
         }

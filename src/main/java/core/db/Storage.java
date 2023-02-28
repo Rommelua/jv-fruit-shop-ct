@@ -9,6 +9,7 @@ public class Storage {
     public Storage() {
     }
 
+    // можна видалити
     public Storage(Map<String, Integer> mapOfFruits) {
         this.mapOfFruits = mapOfFruits;
     }
@@ -17,10 +18,12 @@ public class Storage {
         return mapOfFruits;
     }
 
+    // можна видалити
     public void setMapOfFruits(Map<String, Integer> mapOfFruits) {
         this.mapOfFruits = mapOfFruits;
     }
 
+    // можна видалити
     @Override
     public String toString() {
         return "Storage{"

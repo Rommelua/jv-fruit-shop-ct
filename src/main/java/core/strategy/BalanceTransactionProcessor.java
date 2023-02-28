@@ -4,9 +4,13 @@ import core.db.StorageDao;
 import core.model.FruitTransaction;
 
 public class BalanceTransactionProcessor implements TransactionProcessor {
-    @Override
+    private StorageDao storage;
+
+    public BalanceTransactionProcessor(StorageDao storage) {
+    }
+
     public void process(FruitTransaction transaction, StorageDao storage) {
-        storage.putToStorageFruitAndQuantity(transaction.getFruit(), transaction.getQuantity());
+        storage.set(transaction.getFruit(), transaction.getQuantity());
     }
 
 }

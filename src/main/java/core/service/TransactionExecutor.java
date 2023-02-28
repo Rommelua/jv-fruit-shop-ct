@@ -5,5 +5,5 @@ import core.model.FruitTransaction;
 import java.util.List;
 
 public interface TransactionExecutor {
-    StorageDao executeTransactions(List<FruitTransaction> transactions);
+    void executeTransactions(List<FruitTransaction> transactions, StorageDao storage);
 }
