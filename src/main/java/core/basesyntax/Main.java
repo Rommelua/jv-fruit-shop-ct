@@ -23,7 +23,6 @@ public class Main {
         StorageDao storage = new StorageDao();
 
         TransactionExecutor transactionExecutor = new TransactionExecutorImpl();
-        // transactionExecutor повинен повернути потрібний хендлер.
         transactionExecutor.executeTransactions(transactions, storage);
 
         ReportService reportService = new ReportService();

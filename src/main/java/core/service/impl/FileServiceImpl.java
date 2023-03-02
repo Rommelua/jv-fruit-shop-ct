@@ -19,10 +19,10 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public Path writeFile(String pathToFile, String report) {
+    public Path writeFile(String pathToFile, String dailyFruitReport) {
         Path path = Paths.get(pathToFile);
         try {
-            return Files.writeString(path, report);
+            return Files.writeString(path, dailyFruitReport);
         } catch (IOException e) {
             throw new RuntimeException("Can't create file, " + pathToFile, e);
         }

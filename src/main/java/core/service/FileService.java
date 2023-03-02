@@ -6,5 +6,5 @@ import java.util.List;
 public interface FileService {
     List<String> readFile(String pathToFile);
 
-    Path writeFile(String pathToFile, String report); // report - переименовать на общее название.
+    Path writeFile(String pathToFile, String dailyFruitReport);
 }
