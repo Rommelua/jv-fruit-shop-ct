@@ -1,8 +1,6 @@
 package db;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import model.Fruit;
 
@@ -14,30 +12,15 @@ public class Storage {
     }
 
     public int getFruitAmount(Fruit fruit) {
-        for (Fruit searchFruit : storage.keySet()) {
-            if (fruit.equals(searchFruit)) {
-                return storage.get(searchFruit);
-            }
-        }
-        return 0;
+        return storage.get(fruit);
     }
 
     public void setFruitAmount(Fruit fruit, int amount) {
-        if (!storage.containsKey(fruit)) {
-            storage.put(fruit,amount);
-        } else {
-            storage.replace(fruit,amount);
-        }
+        storage.put(fruit,amount);
     }
 
-    public List<String> getAllFruits() {
-        List<String> fruitList = new ArrayList<>();
-        for (Fruit fruit: storage.keySet()) {
-            String temp = new String();
-            temp = fruit.getName() + "," + storage.get(fruit) + System.lineSeparator();
-            fruitList.add(temp);
-        }
-        return fruitList;
+    public Map<Fruit,Integer> getAllFruits() {
+        return storage;
     }
 
 }

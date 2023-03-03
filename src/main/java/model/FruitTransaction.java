@@ -51,13 +51,13 @@ public class FruitTransaction {
             return this.code;
         }
 
-        public static Operation fromCode(String code) {
+        public static Operation fromCode(String code) throws IllegalArgumentException {
             for (Operation operation : Operation.values()) {
                 if (operation.code.equalsIgnoreCase(code)) {
                     return operation;
                 }
             }
-            return null;
+            throw new IllegalArgumentException("Incorrect operation type");
         }
     }
 }

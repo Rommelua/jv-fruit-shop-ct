@@ -6,7 +6,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import service.FileService;
 
@@ -29,8 +32,9 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String readFromFile(String filePath) {
-        String inputLines = "";
+    public List<String> readFromFile(String filePath) {
+        String inputLine = "";
+
         try {
             RandomAccessFile file = new RandomAccessFile(filePath, READ_ACCESS_TYPE);
             FileChannel fileChannel = file.getChannel();
@@ -38,14 +42,16 @@ public class FileServiceImpl implements FileService {
             while (fileChannel.read(byteBuffer) > 0) {
                 byteBuffer.flip();
                 while (byteBuffer.hasRemaining()) {
-                    inputLines = inputLines + (char)byteBuffer.get();
+                    inputLine = inputLine + (char)byteBuffer.get();
                 }
             }
             file.close();
         } catch (IOException exception) {
             System.out.println("File with this path doesn`t found" + exception.getMessage());
         }
-        return inputLines;
+        String[] strArr = inputLine.split(System.lineSeparator());
+        List<String> inputListStrings = new ArrayList<>(Arrays.asList(strArr));
+        return inputListStrings;
     }
 }
 

@@ -10,16 +10,20 @@ public class TransactionParserImpl implements TransactionParser {
     private List<FruitTransaction> fruitTransactionList;
 
     @Override
-    public List<FruitTransaction> parseTransaction(String input) {
+    public List<FruitTransaction> parseTransaction(List<String> input) {
         fruitTransactionList = new ArrayList<>();
-        String[] inputData = input.split(System.lineSeparator());
-        for (int i = 1; i < inputData.length; i++) {
-            String[] transactionDetails = inputData[i].split(",");
-            FruitTransaction fruitTransaction = new FruitTransaction(
-                     FruitTransaction.Operation.fromCode(transactionDetails[0]),
-                    new Fruit(transactionDetails[1]),
-                    Integer.parseInt(transactionDetails[2]));
-            fruitTransactionList.add(fruitTransaction);
+        for (String str : input) {
+            try {
+                String[] transactionDetails = str.split(",");
+                FruitTransaction fruitTransaction = new FruitTransaction(
+                         FruitTransaction.Operation.fromCode(transactionDetails[0]),
+                         new Fruit(transactionDetails[1]),
+                         Integer.parseInt(transactionDetails[2]));
+                fruitTransactionList.add(fruitTransaction);
+            } catch (IllegalArgumentException exception) {
+                System.out.println("Illegal parameter for Transaction creation"
+                        + exception.getMessage());
+            }
         }
         return fruitTransactionList;
     }

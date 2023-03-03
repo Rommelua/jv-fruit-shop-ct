@@ -18,17 +18,20 @@ public class TransactionExecutorImpl implements TransactionExecutor {
 
     public TransactionExecutorImpl(Storage storage) {
         this.operationHandlers = new HashMap<>();
-        operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperationHandler());
-        operationHandlers.put(FruitTransaction.Operation.PURCHASE, new PurchaseOperationHandler());
-        operationHandlers.put(FruitTransaction.Operation.RETURN, new ReturnOperationHandler());
-        operationHandlers.put(FruitTransaction.Operation.SUPPLY, new SupplyOperationHandler());
-        this.storage = storage;
+        operationHandlers.put(FruitTransaction.Operation.BALANCE,
+                new BalanceOperationHandler(storage));
+        operationHandlers.put(FruitTransaction.Operation.PURCHASE,
+                new PurchaseOperationHandler(storage));
+        operationHandlers.put(FruitTransaction.Operation.RETURN,
+                new ReturnOperationHandler(storage));
+        operationHandlers.put(FruitTransaction.Operation.SUPPLY,
+                new SupplyOperationHandler(storage));
     }
 
     @Override
     public Storage execute(List<FruitTransaction> transactionList) {
         for (FruitTransaction transaction : transactionList) {
-            operationHandlers.get(transaction.getOperation()).executeOperation(transaction,storage);
+            operationHandlers.get(transaction.getOperation()).executeOperation(transaction);
         }
         return storage;
     }

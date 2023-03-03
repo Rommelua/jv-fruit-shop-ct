@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Fruit {
     private String name;
 
@@ -20,17 +22,11 @@ public class Fruit {
             return false;
         }
         final Fruit fruit = (Fruit) obj;
-        if (this.getName() == null || fruit.getName() == null
-                || !this.getName().equals(fruit.getName())) {
-            return false;
-        }
-        return true;
+        return Objects.equals(name, fruit.getName());
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + name.hashCode();
-        return result;
+        return Objects.hashCode(name);
     }
 }
