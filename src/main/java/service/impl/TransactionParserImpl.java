@@ -10,7 +10,7 @@ public class TransactionParserImpl implements TransactionParser {
     private List<FruitTransaction> fruitTransactionList;
 
     @Override
-    public List<FruitTransaction> parseTransaction(List<String> input) {
+    public List<FruitTransaction> parseTransactions(List<String> input) {
         fruitTransactionList = new ArrayList<>();
         for (String str : input) {
             try {

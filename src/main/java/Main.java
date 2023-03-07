@@ -21,7 +21,7 @@ public class Main {
         List<String> inputTransactionString = fileService.readFromFile(inputCsvFilePath);
         //parse the input + fill in the storage
         TransactionParser parser = new TransactionParserImpl();
-        List<FruitTransaction> transactionList = parser.parseTransaction(inputTransactionString);
+        List<FruitTransaction> transactionList = parser.parseTransactions(inputTransactionString);
         //fill the storage with Fruits
         Storage storage = new Storage();
         //execute transactions
