@@ -20,13 +20,12 @@ public class Main {
         TransactionParser transactionParser = new TransactionParser();
         List<FruitTransaction> transactions = transactionParser.parse(dataFromFile);
 
-        StorageDao storage = new StorageDao();
-
-        TransactionExecutor transactionExecutor = new TransactionExecutorImpl();
-        transactionExecutor.executeTransactions(transactions, storage);
+        StorageDao storageDao = new StorageDao();
+        TransactionExecutor transactionExecutor = new TransactionExecutorImpl(storageDao);
+        transactionExecutor.executeTransactions(transactions);
 
         ReportService reportService = new ReportService();
-        String fruitBalance = reportService.makeReport(storage);
+        String fruitBalance = reportService.makeReport(storageDao);
         fileService.writeFile(PATH_TO_SAVE_REPORT, fruitBalance);
     }
 }

@@ -10,11 +10,11 @@ public class Strategy {
     private static final Map<FruitTransaction.Operation, TransactionProcessor> processors = new HashMap<>();
 
     static {
-        StorageDao storage = new StorageDao(new Storage());
-        processors.put(FruitTransaction.Operation.BALANCE, new BalanceTransactionProcessor(storage));
-        processors.put(FruitTransaction.Operation.SUPPLY, new SupplyTransactionProcessor(storage));
-        processors.put(FruitTransaction.Operation.PURCHASE, new PurchaseTransactionProcessor(storage));
-        processors.put(FruitTransaction.Operation.RETURN, new ReturnTransactionProcessor(storage));
+        StorageDao storageDao = new StorageDao(new Storage());
+        processors.put(FruitTransaction.Operation.BALANCE, new BalanceTransactionProcessor(storageDao));
+        processors.put(FruitTransaction.Operation.SUPPLY, new SupplyTransactionProcessor(storageDao));
+        processors.put(FruitTransaction.Operation.PURCHASE, new PurchaseTransactionProcessor(storageDao));
+        processors.put(FruitTransaction.Operation.RETURN, new ReturnTransactionProcessor(storageDao));
     }
 
     public TransactionProcessor getTransactionProcessor(FruitTransaction.Operation operation) {

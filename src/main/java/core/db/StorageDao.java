@@ -3,13 +3,13 @@ package core.db;
 import java.util.Map;
 
 public class StorageDao {
-    private Storage storage = new Storage();
+    private static Storage storage = new Storage();
 
     public StorageDao() {
     }
 
     public StorageDao(Storage storage) {
-        this.storage = storage;
+        StorageDao.storage = storage;
     }
 
     public void set(String fruit, int quantity) {
