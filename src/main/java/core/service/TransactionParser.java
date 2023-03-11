@@ -20,7 +20,6 @@ public class TransactionParser {
             );
             transactionsList.add(fruitTransaction);
         }
-
         return transactionsList;
     }
 }

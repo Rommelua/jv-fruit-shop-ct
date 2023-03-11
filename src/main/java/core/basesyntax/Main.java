@@ -24,8 +24,8 @@ public class Main {
         TransactionExecutor transactionExecutor = new TransactionExecutorImpl(storageDao);
         transactionExecutor.executeTransactions(transactions);
 
-        ReportService reportService = new ReportService();
-        String fruitBalance = reportService.makeReport(storageDao);
+        ReportService reportService = new ReportService(storageDao);
+        String fruitBalance = reportService.makeReport();
         fileService.writeFile(PATH_TO_SAVE_REPORT, fruitBalance);
     }
 }
