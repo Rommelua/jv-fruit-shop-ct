@@ -1,8 +1,8 @@
 package service.impl;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import service.FileService;
@@ -11,7 +11,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public void writeToFile(String filePath, String report) throws IOException {
-       Path path = Path.of(filePath);
+        Path path = Path.of(filePath);
         try {
             byte[] reportBytes = report.getBytes();
             Path writeToFilePath = Files.write(path,reportBytes);
