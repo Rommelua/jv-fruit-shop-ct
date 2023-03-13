@@ -20,7 +20,8 @@ public class Storage {
     }
 
     public Map<Fruit,Integer> getAllFruits() {
-        return storage;
+        Map<Fruit,Integer> copyMap = new HashMap<>(storage);
+        return copyMap;
     }
 
 }

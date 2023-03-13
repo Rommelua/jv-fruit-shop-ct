@@ -29,10 +29,9 @@ public class TransactionExecutorImpl implements TransactionExecutor {
     }
 
     @Override
-    public Storage execute(List<FruitTransaction> transactionList) {
+    public void execute(List<FruitTransaction> transactionList) {
         for (FruitTransaction transaction : transactionList) {
             operationHandlers.get(transaction.getOperation()).executeOperation(transaction);
         }
-        return storage;
     }
 }

@@ -21,7 +21,7 @@ public class TransactionParserImpl implements TransactionParser {
                          Integer.parseInt(transactionDetails[2]));
                 fruitTransactionList.add(fruitTransaction);
             } catch (IllegalArgumentException exception) {
-                System.out.println("Illegal parameter for Transaction creation"
+                throw new IllegalArgumentException("Illegal parameters for Transaction creation "
                         + exception.getMessage());
             }
         }
