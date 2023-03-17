@@ -1,9 +1,11 @@
 package core.db;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class StorageDao {
     private static Storage storage = new Storage();
+    private Map<String, Integer> mapOfFruitsDao = new HashMap<>();
 
     public StorageDao() {
     }
@@ -20,13 +22,8 @@ public class StorageDao {
         return storage.getMapOfFruits().get(fruit);
     }
 
-    public void getAll(Map<String, Integer> fruit) {
-        for (String fruits : fruit.keySet()) {
-            storage.getMapOfFruits().get(fruits);
-        }
-    }
-
     public Map<String, Integer> getAllFruits() {
-        return storage.getMapOfFruits();
+        mapOfFruitsDao = storage.getMapOfFruits();
+        return mapOfFruitsDao;
     }
 }
