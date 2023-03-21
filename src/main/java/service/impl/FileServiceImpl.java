@@ -15,7 +15,7 @@ public class FileServiceImpl implements FileService {
         try {
             Files.write(path, report.getBytes());
         } catch (IOException exception) {
-            throw new RuntimeException("File with the path not found " + filePath);
+            throw new RuntimeException("File with the path not found " + filePath, exception);
         }
     }
 
@@ -25,10 +25,11 @@ public class FileServiceImpl implements FileService {
         List<String> inputLinesList = new ArrayList<>();
         try {
             inputLinesList = Files.readAllLines(path);
+            return inputLinesList;
         } catch (IOException exception) {
-            throw new RuntimeException("Can`t read the file with the path " + filePath);
+            throw new RuntimeException("Can`t read the file with the path " + filePath, exception);
         }
-        return inputLinesList;
+
     }
 }
 

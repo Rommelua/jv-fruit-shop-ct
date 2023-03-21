@@ -12,11 +12,11 @@ public class Storage {
     }
 
     public int getFruitAmount(Fruit fruit) {
-        return storage.getOrDefault(fruit,0);
+        return storage.getOrDefault(fruit, 0);
     }
 
     public void setFruitAmount(Fruit fruit, int amount) {
-        storage.put(fruit,amount);
+        storage.put(fruit, amount);
     }
 
     public Map<Fruit,Integer> getAllFruits() {
