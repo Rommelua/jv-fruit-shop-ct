@@ -13,6 +13,6 @@ public class BalanceOperationHandler implements OperationHandler {
 
     @Override
     public void executeOperation(FruitTransaction transaction) {
-        storage.setFruitAmount(transaction.getFruit(),transaction.getQuantity());
+        storage.setFruitAmount(transaction.getFruit(), transaction.getQuantity());
     }
 }

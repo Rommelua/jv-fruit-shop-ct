@@ -12,19 +12,19 @@ public class TransactionParserImpl implements TransactionParser {
     @Override
     public List<FruitTransaction> parseTransactions(List<String> input) {
         fruitTransactionList = new ArrayList<>();
-        for (String str : input) {
-            try {
-                String[] transactionDetails = str.split(",");
-                FruitTransaction fruitTransaction = new FruitTransaction(
-                         FruitTransaction.Operation.fromCode(transactionDetails[0]),
-                         new Fruit(transactionDetails[1]),
-                         Integer.parseInt(transactionDetails[2]));
-                fruitTransactionList.add(fruitTransaction);
-            } catch (IllegalArgumentException exception) {
-                throw new IllegalArgumentException("Illegal parameters for Transaction creation "
-                        + exception.getMessage());
-            }
+        input.remove(0);
+        for (String inputLine : input) {
+            FruitTransaction fruitTransaction = parseLine(inputLine);
+            fruitTransactionList.add(fruitTransaction);
         }
         return fruitTransactionList;
+    }
+
+    private FruitTransaction parseLine(String str) {
+        String[] transactionDetails = str.split(",");
+        return new FruitTransaction(
+                 FruitTransaction.Operation.fromCode(transactionDetails[0]),
+                 new Fruit(transactionDetails[1]),
+                 Integer.parseInt(transactionDetails[2]));
     }
 }

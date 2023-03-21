@@ -14,12 +14,12 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public String createReport() {
-        String report = HEADER + System.lineSeparator();
+        StringBuilder report = new StringBuilder(HEADER).append(System.lineSeparator());
         for (Fruit fruit : storage.getAllFruits().keySet()) {
-            report = report.concat(fruit.getName() + ","
+            report = report.append(fruit.getName() + ","
                     + storage.getFruitAmount(fruit)
                     + System.lineSeparator());
         }
-        return report;
+        return report.toString();
     }
 }

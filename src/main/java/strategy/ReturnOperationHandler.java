@@ -15,6 +15,6 @@ public class ReturnOperationHandler implements OperationHandler {
     public void executeOperation(FruitTransaction transaction) {
         int operationResult = transaction.getQuantity()
                 + storage.getFruitAmount(transaction.getFruit());
-        storage.setFruitAmount(transaction.getFruit(),operationResult);
+        storage.setFruitAmount(transaction.getFruit(), operationResult);
     }
 }

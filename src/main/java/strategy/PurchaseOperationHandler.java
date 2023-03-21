@@ -15,6 +15,12 @@ public class PurchaseOperationHandler implements OperationHandler {
     public void executeOperation(FruitTransaction transaction) {
         int operationResult = storage.getFruitAmount(transaction.getFruit())
                 - transaction.getQuantity();
-        storage.setFruitAmount(transaction.getFruit(),operationResult);
+        if (operationResult < 0) {
+            throw new RuntimeException("Transaction can`t be executed for "
+                   + transaction.getFruit() + ". Purchase amount "
+                   + transaction.getQuantity() + "exceeds fruit amount in the Storage "
+                   + storage.getFruitAmount(transaction.getFruit()));
+        }
+        storage.setFruitAmount(transaction.getFruit(), operationResult);
     }
 }

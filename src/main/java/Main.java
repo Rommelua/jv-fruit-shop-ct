@@ -15,16 +15,12 @@ public class Main {
     private static final String INPUT_FILE_PATH = "src/main/resources/fruitTransactions.txt";
     private static final String OUTPUT_FILE_PATH = "src/main/resources/fruitReport.txt";
 
-    public static void main(String[] args) throws IOException {
-        //read from file
+    public static void main(String[] args) {
         FileService fileService = new FileServiceImpl();
         List<String> inputStringsList = fileService.readFromFile(INPUT_FILE_PATH);
-        //parse the input + fill in the storage
         TransactionParser parser = new TransactionParserImpl();
         List<FruitTransaction> transactionList = parser.parseTransactions(inputStringsList);
-        //fill the storage with Fruits
         Storage storage = new Storage();
-        //execute transactions
         TransactionExecutor transactionExecutor = new TransactionExecutorImpl(storage);
         transactionExecutor.execute(transactionList);
         ReportService reporter = new ReportServiceImpl(storage);

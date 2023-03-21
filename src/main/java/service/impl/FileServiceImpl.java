@@ -10,26 +10,24 @@ import service.FileService;
 public class FileServiceImpl implements FileService {
 
     @Override
-    public void writeToFile(String filePath, String report) throws IOException {
+    public void writeToFile(String filePath, String report) {
         Path path = Path.of(filePath);
         try {
-            byte[] reportBytes = report.getBytes();
-            Path writeToFilePath = Files.write(path,reportBytes);
+            Files.write(path, report.getBytes());
         } catch (IOException exception) {
-            throw new IOException("File with the path not found" + exception.getMessage());
+            throw new RuntimeException("File with the path not found " + filePath);
         }
     }
 
     @Override
-    public List<String> readFromFile(String filePath) throws IOException {
+    public List<String> readFromFile(String filePath) {
         Path path = Path.of(filePath);
         List<String> inputLinesList = new ArrayList<>();
         try {
             inputLinesList = Files.readAllLines(path);
         } catch (IOException exception) {
-            throw new IOException("Can`t read the file with the path" + filePath);
+            throw new RuntimeException("Can`t read the file with the path " + filePath);
         }
-        inputLinesList.remove(0);
         return inputLinesList;
     }
 }

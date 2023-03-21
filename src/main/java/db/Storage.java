@@ -12,7 +12,7 @@ public class Storage {
     }
 
     public int getFruitAmount(Fruit fruit) {
-        return storage.get(fruit);
+        return storage.getOrDefault(fruit,0);
     }
 
     public void setFruitAmount(Fruit fruit, int amount) {
@@ -20,8 +20,7 @@ public class Storage {
     }
 
     public Map<Fruit,Integer> getAllFruits() {
-        Map<Fruit,Integer> copyMap = new HashMap<>(storage);
-        return copyMap;
+        return new HashMap<>(storage);
     }
 
 }

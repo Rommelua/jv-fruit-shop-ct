@@ -57,7 +57,7 @@ public class FruitTransaction {
                     return operation;
                 }
             }
-            throw new IllegalArgumentException("Incorrect operation code" + code);
+            throw new IllegalArgumentException("Incorrect operation code: " + code);
         }
     }
 }
