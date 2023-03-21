@@ -1,0 +1,4 @@
+fruit,quantity
+banana,152
+peach,25
+apple,90
