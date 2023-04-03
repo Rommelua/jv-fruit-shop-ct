@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionParser {
-    private static final int OPERATION = 0;
+    private static final int OPERATION_INDEX = 0;
     private static final int FRUIT = 1;
     private static final int AMOUNT = 2;
 
@@ -13,13 +13,18 @@ public class TransactionParser {
         List<FruitTransaction> transactionsList = new ArrayList<>();
         for (int i = 1; i < data.size(); i++) {
             String[] dividedLine = data.get(i).split(",");
-            FruitTransaction fruitTransaction = new FruitTransaction(
-                    FruitTransaction.Operation.getByCode(dividedLine[OPERATION]),
-                    dividedLine[FRUIT],
-                    Integer.parseInt(dividedLine[AMOUNT])
-            );
+            FruitTransaction fruitTransaction = getTransaction(dividedLine);
             transactionsList.add(fruitTransaction);
         }
         return transactionsList;
+    }
+
+    private static FruitTransaction getTransaction(String[] dividedLine) {
+        FruitTransaction fruitTransaction = new FruitTransaction(
+                FruitTransaction.Operation.getByCode(dividedLine[OPERATION_INDEX]),
+                dividedLine[FRUIT],
+                Integer.parseInt(dividedLine[AMOUNT])
+        );
+        return fruitTransaction;
     }
 }

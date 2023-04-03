@@ -52,12 +52,12 @@ public class FruitTransaction {
         }
 
         public static Operation getByCode(String code) {
-            for (Operation activity : Operation.values()) {
-                if (code.equals(activity.getCode())) {
-                    return activity;
+            for (Operation operation : Operation.values()) {
+                if (code.equals(operation.getCode())) {
+                    return operation;
                 }
             }
-            throw new IllegalArgumentException("No such operation found.");
+            throw new IllegalArgumentException("Code is not supported: " + code);
         }
     }
 

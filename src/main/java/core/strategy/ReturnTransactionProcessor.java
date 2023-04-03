@@ -4,11 +4,14 @@ import core.db.StorageDao;
 import core.model.FruitTransaction;
 
 public class ReturnTransactionProcessor implements TransactionProcessor {
-    public ReturnTransactionProcessor(StorageDao storageDao) {
+    private final StorageDao storageDao;
+
+    public ReturnTransactionProcessor() {
+        storageDao = new StorageDao();
     }
 
     @Override
-    public void process(FruitTransaction transaction, StorageDao storageDao) {
+    public void process(FruitTransaction transaction) {
         storageDao.set(transaction.getFruit(), storageDao.get(transaction.getFruit()) + transaction.getQuantity());
     }
 }
