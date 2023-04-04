@@ -11,12 +11,12 @@ public class ReportService {
     }
 
     public String makeReport() {
-        String report = "fruit,quantity";
+        StringBuilder report = new StringBuilder("fruit,quantity");
         for (Map.Entry<String, Integer> storageEntry : storageDao.getAllFruits().entrySet()) {
             String fruit = storageEntry.getKey();
             String quantity = Integer.toString(storageEntry.getValue());
-            report = report + System.lineSeparator() + fruit + "," + quantity;
+            report.append(System.lineSeparator()).append(fruit).append(",").append(quantity);
         }
-        return report;
+        return report.toString();
     }
 }

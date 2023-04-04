@@ -19,12 +19,11 @@ public class TransactionParser {
         return transactionsList;
     }
 
-    private static FruitTransaction getTransaction(String[] dividedLine) {
-        FruitTransaction fruitTransaction = new FruitTransaction(
+    private FruitTransaction getTransaction(String[] dividedLine) {
+        return new FruitTransaction(
                 FruitTransaction.Operation.getByCode(dividedLine[OPERATION_INDEX]),
                 dividedLine[FRUIT],
                 Integer.parseInt(dividedLine[AMOUNT])
         );
-        return fruitTransaction;
     }
 }

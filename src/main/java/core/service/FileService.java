@@ -6,5 +6,5 @@ import java.util.List;
 public interface FileService {
     List<String> readFile(String pathToFile);
 
-    Path writeFile(String pathToFile, String dailyFruitReport);
+    Path writeFile(String pathToFile, String dataReport);
 }

@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class StorageDao {
     private static final Storage storage = new Storage();
-    private Map<String, Integer> mapOfFruitsDao = new HashMap<>();
 
     public StorageDao() {
     }
@@ -19,7 +18,6 @@ public class StorageDao {
     }
 
     public Map<String, Integer> getAllFruits() {
-        mapOfFruitsDao = storage.getMapOfFruits();
-        return mapOfFruitsDao;
+        return new HashMap<>(storage.getMapOfFruits());
     }
 }
