@@ -3,10 +3,10 @@ package core.basesyntax;
 import core.db.StorageDao;
 import core.model.FruitTransaction;
 import core.service.ReportService;
-import core.service.TransactionExecutor;
+import core.service.interfaces.TransactionExecutor;
 import core.service.TransactionParser;
-import core.service.impl.FileServiceImpl;
-import core.service.impl.TransactionExecutorImpl;
+import core.service.FileServiceImpl;
+import core.service.TransactionExecutorImpl;
 import java.util.List;
 
 public class Main {
@@ -20,10 +20,10 @@ public class Main {
         TransactionParser transactionParser = new TransactionParser();
         List<FruitTransaction> transactions = transactionParser.parse(dataFromFile);
 
-        StorageDao storageDao = new StorageDao();
-        TransactionExecutor transactionExecutor = new TransactionExecutorImpl(storageDao);
+        TransactionExecutor transactionExecutor = new TransactionExecutorImpl();
         transactionExecutor.executeTransactions(transactions);
 
+        StorageDao storageDao = new StorageDao();
         ReportService reportService = new ReportService(storageDao);
         String report = reportService.makeReport();
         fileService.writeFile(PATH_TO_SAVE_REPORT, report);

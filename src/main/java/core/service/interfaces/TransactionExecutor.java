@@ -1,4 +1,4 @@
-package core.service;
+package core.service.interfaces;
 
 import core.model.FruitTransaction;
 import java.util.List;

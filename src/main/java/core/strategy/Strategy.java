@@ -1,6 +1,8 @@
 package core.strategy;
 
 import core.model.FruitTransaction;
+import core.service.interfaces.TransactionProcessor;
+
 import java.util.HashMap;
 import java.util.Map;
 

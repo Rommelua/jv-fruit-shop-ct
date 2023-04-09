@@ -1,6 +1,6 @@
-package core.service.impl;
+package core.service;
 
-import core.service.FileService;
+import core.service.interfaces.FileService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

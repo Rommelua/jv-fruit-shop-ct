@@ -1,4 +1,4 @@
-package core.strategy;
+package core.service.interfaces;
 
 import core.model.FruitTransaction;
 

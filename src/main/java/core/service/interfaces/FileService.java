@@ -1,4 +1,4 @@
-package core.service;
+package core.service.interfaces;
 
 import java.nio.file.Path;
 import java.util.List;

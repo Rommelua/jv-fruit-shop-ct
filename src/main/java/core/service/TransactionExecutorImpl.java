@@ -1,15 +1,14 @@
-package core.service.impl;
+package core.service;
 
-import core.db.StorageDao;
 import core.model.FruitTransaction;
-import core.service.TransactionExecutor;
+import core.service.interfaces.TransactionExecutor;
 import core.strategy.Strategy;
 import java.util.List;
 
 public class TransactionExecutorImpl implements TransactionExecutor {
     private final Strategy strategy;
 
-    public TransactionExecutorImpl(StorageDao storageDao) {
+    public TransactionExecutorImpl() {
         strategy = new Strategy();
     }
 
